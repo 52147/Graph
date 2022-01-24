@@ -70,6 +70,7 @@ public class UnionFind {
 	
 	private int[] root;
 	
+	
 	public UnionFind(int size) {
 		root = new int[size];
 		
@@ -93,6 +94,8 @@ public class UnionFind {
 			
 		}
 	}
+	
+	
 	
 	public boolean connected(int x, int y) {
 		return find(x) == find(y);

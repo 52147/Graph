@@ -2,6 +2,8 @@ package pathcompressionoptimization;
 /**
  * = Path compression optimization =
  * 
+ *  -> use recursion in find function
+ *  
  * - In the previous implementation of the "disjoint set", notice that to find the root node,
  *   we need to traverse the parent nodes sequentially until we reach the root node.
  * - If we search the root node of the same element again,
@@ -19,6 +21,37 @@ package pathcompressionoptimization;
  * - The optimization is called "path compression", which optimized the find function.  
  * 
  * 
+ * 
+ * Time complexity:
+ * 
+ * - Time complexities shown below are for the average case, since the worse-case scenario is rare in practice.
+ * 
+ * - Union-find constructor: O(N)
+ * 
+ * - Find: O(log N)
+ * 
+ * - Union: O(log N)
+ * 
+ * - Connected O(log N)
+ * 
+ * - Note: N is the number of vertices in the graph.
+ * 
+ *   - As before, we need O(N) time to create and fill the root array.
+ *   
+ *   
+ *   - For the find, union, and connected operations
+ *     (the latter two operations both depend on the find operation),
+ *     we need O(1) time for the best case
+ *     (when the parent node for some vertex is the root node itself).
+ *   - In the worst case, it would be O(N) time when the tree is skewed.
+ *   - However, on average, the time complexity will be O(log N).
+ *     
+ *      
+ * Space complexity:
+ * 
+ * - We need O(N) space to store the array of size N. 
+ * 
+ * 
  *
  */
 
@@ -34,11 +67,13 @@ public class UnionFind {
 		}
 	}
 	
+	// recursion find
 	public int find(int x) {
-		if(x == root[x]) {
+		if(x == root[x]) { // if the parent node of x is equal to itself, we found the root of x
 			return x;
 		}
-		return root[x] = find(root[x]);
+		return root[x] = find(root[x]); // if is not equal, we keep searching and using the find function
+		                                // the same time, we will change their root node
 	}
 	
 	public void union(int x, int y) {

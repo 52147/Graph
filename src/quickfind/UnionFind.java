@@ -101,6 +101,11 @@ package quickfind;
  * Space complexity:
  * 
  *  - We need O(N) space to store the array of size N.
+ *  
+ *  
+ *  
+ *  Root array:
+ *  
  *
  */
 
