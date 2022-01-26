@@ -66,11 +66,13 @@ package quickunion;
  * array index(vertex)          0 1 2 3 4 5 6
  *
  */
+
+// quick union: directly connected the vertex with the root node, so the array value will be the root node(parent node)
 public class UnionFind {
 	
 	private int[] root;
 	
-	
+	// O(N)
 	public UnionFind(int size) {
 		root = new int[size];
 		
@@ -79,24 +81,26 @@ public class UnionFind {
 		}
 	}
 	
+	// <= O(N), the worst case(a line tree)
 	public int find(int x) {
-		while(x != root[x])
-			x = root[x];
-		return x;
+		while(x != root[x]) // not the root node
+			x = root[x]; // keep find the parent node of the vertex
+		return x; // the parent node is vertex itself
 	}
 	
+	// <= O(N), because use find method
 	public void union(int x, int y) {
 		int rootX = find(x);
 		int rootY = find(y);
 		
 		if(rootX != rootY) {
-			root[rootY] = rootX;
+			root[rootY] = rootX; // set the parent node of y and to x's parent node(rootX).
 			
 		}
 	}
 	
 	
-	
+	// O(N)
 	public boolean connected(int x, int y) {
 		return find(x) == find(y);
 	}

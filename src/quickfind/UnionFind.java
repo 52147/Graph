@@ -109,11 +109,14 @@ package quickfind;
  *
  */
 
+// Quick find implementation
 public class UnionFind {
 	
 	
 	private int[] root; // a root array
 	
+	
+	// O(N)
 	// constructor: for initialize the root array value
 	public UnionFind(int size) {
 		root = new int[size];
@@ -122,24 +125,30 @@ public class UnionFind {
 		}
 	}
 	
+	// O(1)
 	// find the root vertex of the x vertex
 	public int find(int x) {
-		return root[x];
+		return root[x];  // directly return the array value of corresponding index.
 	}
 	
+	
+	// O(N)
 	// make the root node the same
 	public void union(int x, int y) {
 		int rootX = find(x); // the root of x vertex
 		int rootY = find(y); // the root of y vertex
+		
+		
 		if(rootX != rootY) {
 			for(int i = 0; i< root.length; i++) { // traverse the root array and set the 2 set to the same root
-				if(root [i] == rootY) {
-					root[i] = rootX;
+				if(root [i] == rootY) {  // need to take more time because we store the root node in the array, 
+					root[i] = rootX;    // so we need to traverse the all root to find the different root node value and change all the root node that it be merged.
 				}
 			}
 		}
 	}
 	
+	// O(1)
 	// check the x and y vertex have the same root node
 	public boolean connected(int x, int y) {
 		return find(x) == find(y);
