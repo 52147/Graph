@@ -176,7 +176,7 @@ public class UnionFind {
 		
 		for(int i = 0; i<size; i++) {
 			root[i] = i;
-			rank[i] = 1;
+			rank[i] = 1; // initialize each node rank with 1 because at first each node is isolating and independent
 		}
 	}
 	
