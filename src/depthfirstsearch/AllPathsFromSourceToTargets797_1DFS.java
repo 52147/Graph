@@ -3,12 +3,33 @@ package depthfirstsearch;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 797. All paths from source to target
+ * 
+ * Use DFS
+ * 
+ * 
+ * 
+ * 
+ * return statement in the void method:
+ * 
+ * void method : no return value
+ * but we can use
+ *   
+ *   return;
+ *   
+ *   to end the execution of the void method.
+ *   Some programmers use this statement to end the method invocation early 
+ *
+ *
+ */
+
 public class AllPathsFromSourceToTargets797_1DFS {
 	
 	// DFS
 	public List<List<Integer>> allPathsSourceTarget(int[][] graph){
 		
-		List<List<Integer>> paths = new ArrayList<>(); // create a array list for paths
+		List<List<Integer>> paths = new ArrayList<>(); // create a array list to implement interface type paths
 		
 		if(graph == null || graph.length == 0) { // if the graph is null or empty
 			return paths;
