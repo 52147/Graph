@@ -20,9 +20,9 @@ public class AllPathsFromSourceToTargets797_1DFS {
 	
 	void dfs(int[][] graph, int node, List<Integer> path, List<List<Integer>> paths) {
 		path.add(node);
-		
+		   
 		if(node == graph.length -1) {
-			paths.add(new ArrayList<>(path));
+			paths.add(new ArrayList<>(path)); 
 			return;
 		}
 		

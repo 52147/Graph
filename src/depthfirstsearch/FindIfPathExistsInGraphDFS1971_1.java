@@ -163,12 +163,15 @@ public class FindIfPathExistsInGraphDFS1971_1 {
 	
 	public boolean validPath(int n, int[][] edges, int start, int end) {
 		
+		// create a array list to store the adjacency node
 		List<List<Integer>> adjacency_list = new ArrayList<>();
 		
+		// add the all vertex in the adjacency list
 		for(int i = 0; i < n; i++) {
 			adjacency_list.add(new ArrayList<>());
 		}
 		
+		// add the neighbor node to each node
 		for(int[] edge : edges) {
 			adjacency_list.get(edge[0]).add(edge[1]);
 			adjacency_list.get(edge[1]).add(edge[0]);
@@ -176,9 +179,9 @@ public class FindIfPathExistsInGraphDFS1971_1 {
 		
 		Deque<Integer> stack = new ArrayDeque<>();
 		stack.push(start);
-		boolean seen[] = new boolean[n];
+		boolean seen[] = new boolean[n]; // need to give the length of the array
 		
-		Arrays.fill(seen, false);
+		Arrays.fill(seen, false); // At fist, initialize all nodes with false
 		
 		while(!stack.isEmpty()) {
 			
