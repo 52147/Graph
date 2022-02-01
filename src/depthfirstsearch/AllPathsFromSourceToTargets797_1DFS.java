@@ -8,29 +8,29 @@ public class AllPathsFromSourceToTargets797_1DFS {
 	// DFS
 	public List<List<Integer>> allPathsSourceTarget(int[][] graph){
 		
-		List<List<Integer>> paths = new ArrayList<>();
+		List<List<Integer>> paths = new ArrayList<>(); // create a array list for paths
 		
-		if(graph == null || graph.length == 0) {
+		if(graph == null || graph.length == 0) { // if the graph is null or empty
 			return paths;
 		}
 		
-		dfs(graph, 0, new ArrayList<>(), paths);
+		dfs(graph, 0, new ArrayList<>(), paths); // call the dfs method with the first node 0
 		return paths;
 	}
 	
 	void dfs(int[][] graph, int node, List<Integer> path, List<List<Integer>> paths) {
-		path.add(node);
+		path.add(node); // add the node in the path
 		   
-		if(node == graph.length -1) {
-			paths.add(new ArrayList<>(path)); 
-			return;
+		if(node == graph.length -1) { // if the node value is equal to the last node, it means we foud the path
+			paths.add(new ArrayList<>(path));  // add this path in the paths
+			return; // end the method
 		}
 		
-		int [] nextNodes = graph[node];
+		int [] nextNodes = graph[node]; // find the next node 
 		
-		for(int nextNode: nextNodes) {
-			dfs(graph, nextNode, path, paths);
-			path.remove(path.size() - 1);
+		for(int nextNode: nextNodes) { // try every next node to see whether there is a path between first node and lst node
+			dfs(graph, nextNode, path, paths); // found out the path, return to the previous node 
+			path.remove(path.size() - 1); // return to the previous node and try others paths
 		}
 	}
 
