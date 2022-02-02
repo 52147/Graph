@@ -6,9 +6,81 @@ import java.util.List;
 /**
  * 797. All paths from source to target
  * 
+ * 
+ * Approach 1: Backtracking (DFS)
+ * 
  * Use DFS
  * 
+ * Overview:
  * 
+ * - If a hint is ever given on the problem description, that would be backtracking.
+ * - Indeed, since the problem concerns about the path exploration in a graph data structure,
+ *   it is a perfect scenario to apply the backtracking algorithm.
+ *   
+ *   - As a reminder, backtracking is a general algorithm that incrementally builds candidates to the solutions,
+ *     and abandons a candidate ("backtrack") 
+ *     as soon as it determines that the candidate cannot possibly lead to a valid solution.
+ *     
+ * Intuition:
+ * 
+ * - Specifically, for this problem, we could assume ourselves as an agent in a game,
+ *   we can explore the graph one step at a time.
+ *   
+ * - At any given node, we try out each neighbor recursively until we reach the target or
+ *   there is no more node to hop on.
+ * - By trying out, we mark the choice before moving on,
+ *   and later on we reverse the choice(i.e. backtrack) and start another exploration.
+ *   
+ *   
+ * - To better demonstrate the above idea, we illustrate how an agent would explore the graph
+ *   with the backtracking strategy,
+ *   in the following image where we mark the order that each edge is visited.
+ *   
+ *   
+ *               start
+ *                 | 1
+ *                 O
+ *              2  /\ 4
+ *                O  O
+ *              3 \  / 5
+ *                 end
+ * 
+ * Algorithm:
+ * 
+ * - The above idea might remind one of the Depth-first search (DFS) traversal algorithm.
+ * - Indeed, often the backtracking algorithm assumes the form of DFS,
+ *   but with the additional step of backtracking.
+ *   
+ *   
+ * - And for the DFS traversal, we often adopt the recursion as its main form of implementation.
+ * 
+ *   - With recursion, we could implement a backtracking algorithm in a rather intuitive and concise way.
+ *   
+ *   - We break it down into the following steps:
+ *     
+ *     - Essentially, we want to implement a recursive function called backtrack(currNode, path)
+ *       which continues the exploration,
+ *       given the current node and the path traversed so far.
+ *      
+ *      1. base case: 
+ *      - Within the recursive function, we first define its base case, i.e. the moment we should terminate the recursion.
+ *      - Obviously, we should stop the exploration when we encounter our target node.
+ *      - So the condition of the base case is currNode == target.
+ *      
+ *      2. recursive function:
+ *      - As the body of our recursive function, we should enumerate through all the neighbor nodes of the current node.
+ *  
+ *      - For each iteration, we first mark the choice by appending the neighbor node to the path.
+ *      - Then we recursively invoke our backtrack() function to explore deeper.
+ *      
+ *      return to the previous state :
+ *      - At the end of the iteration, we should reverse the choice by popping out the neighbor node from the path,
+ *        so that we could start all over for the next neighbor node.
+ *        
+ *  - Once we define our backtrack() function,
+ *    it suffices to add the initial node (i.e. node with index 0) to the path,
+ *    to kick off our backtracking exploration.      
+ *        
  * 
  * 
  * return statement in the void method:
