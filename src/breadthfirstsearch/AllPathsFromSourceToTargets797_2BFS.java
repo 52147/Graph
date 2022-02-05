@@ -1,6 +1,6 @@
 package breadthfirstsearch;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,13 +19,26 @@ public class AllPathsFromSourceToTargets797_2BFS {
 		
 		List<Integer> path = new ArrayList<>();
 		
-		path.add(0);
+		path.add(0); // the first node 0 do not need to be iterated because we need to start with the first node
 		queue.add(path);
 		
+		
+		
+		// we need to create 2 variable to make sure we do not change the path and paths
+		// until we find the final answer, we will add the path in the paths
+		// 1. first variable is curretPath -> use this variable to find the last node in the path we poll(remove)
+		// 2. second variable is tmpPath -> to find the next node is the destination node and add this path in the paths
+		// (can not add the next node in the current path because the 1 will be stored in every path we iterate)
 		while(!queue.isEmpty()) {
-			List<Integer> currentPath = queue.poll();
+			List<Integer> currentPath = queue.poll(); // remove the fist list in the queue.
 			
 			int node = currentPath.get(currentPath.size()-1);
+			
+			// do not need to determine the current path last node is the destination node
+			// because when we found out the next node is the destination node
+			// we directly add the path in the paths
+			// not add in the queue.
+			
 			
 			for(int nextNode: graph[node]) {
 				
@@ -33,9 +46,9 @@ public class AllPathsFromSourceToTargets797_2BFS {
 				tmpPath.add(nextNode);
 				
 				if(nextNode == graph.length -1) {
-					paths.add(new ArrayList<>(tmpPath));
-				}else {
-					queue.add(new ArrayList<>(tmpPath));
+					paths.add(new ArrayList<>(tmpPath));  // if the next node is the destination node, we add the path in the paths(not in the queue)
+				}else {                                     
+					queue.add(new ArrayList<>(tmpPath)); // if the next node is not the destination node, we add in the queue
 				}
 				
 			}
