@@ -50,7 +50,47 @@ package singlesourceshortestpath;
  *  
  * Proof of the algorithm:
  * 
+ * - Now let's prove that Dijkstra's Algorithm actually leads to the correct answer.
  * 
+ * - The "greedy approach" only guarantees that, at each step, it takes the optimal choice in the current state.
+ * - It does not guarantee that the final result is optimal.
+ * - So, how does "Dijkstra's Algorithm" ensure that its final result is optimal?
+ * 
+ * Limitation of the Algorithm:
+ * 
+ *  - "Dijkstra's Algorithm" can only be used on graph that satisfy the following condition:
+ *    -> weight of all edges are non-negative.
+ *    
+ * Complexity Analysis:
+ * 
+ *  - V represents the number of vertices, and E represents the number of edges.
+ *  
+ *  - Time complexity: O(E + V log V) when a Fibonacci heap is used, or O(V + E log V) for a Binary heap.
+ *    - If you use a Fibonacci heap to implement the "min-heap",
+ *      extracting minimum element will take O(log V) time
+ *      while key decreasing operation will take amortized O(1) time,
+ *      therefore, the total time complexity would be O(E + V log V).
+ *    - If you use a Binary heap, then the time complexity would be O(V + E log V)
+ * 
+ *  - Space complexity: O(V)
+ *    - We need to store V vertices in our data structure.
+ *    
+ *    
+ *  Approach 3: Dijkstra's Algorithm
+ *  
+ *  Intuition:
+ *  
+ *  - As mentioned earlier, our objective is to find the fastest path from node form node k to every other node.
+ *  - This is a typical use case for the Single source shortest path algorithm.
+ *  - Hence, in this approach, we will use Dijkstra's Algorithm to find the fastest path to every node from node k.
+ *  
+ *  - This approach is very similar to the previous BFS approach.
+ *  - We will start with node k and then iterate over adjacent node neighborNode.
+ *  - In the previous approach, we used a queue and hence broadcasted the signal from visited nodes in a FIFO mammer.
+ *  
+ *  - However, in this approach, we will use a priority queue to traverse the nodes in increasing order of the time required to reach them.
+ *  - Therefore, in each iteration, we will visit the node with the shortest travel time.
+ *  - This will help us in finding the fastest time path first.
  * 
  */
 public class NightWorkDelayTime743_Dijkstra {
