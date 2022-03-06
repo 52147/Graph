@@ -1,4 +1,4 @@
-package leetcodegraph;
+package unionfindproblem;
 /**
  * Approach 3: Union-find
  * 

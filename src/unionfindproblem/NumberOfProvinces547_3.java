@@ -1,4 +1,4 @@
-package leetcodegraph;
+package unionfindproblem;
 
 /**
  * 547. Number of Provinces
